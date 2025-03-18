@@ -30,7 +30,7 @@ export default function Portfolio() {
         <div className="flex justify-center gap-4">
           <a href="https://github.com/nikki-13" target="_blank"><FaGithub size={24} /></a>
           <a href="https://linkedin.com/in/nikhilsai" target="_blank"><FaLinkedin size={24} /></a>
-          <a href="mailto:nikhilsai@example.com"><FaEnvelope size={24} /></a>
+          <a href="mailto:somanikhilsai13@gmail.com"><FaEnvelope size={24} /></a>
         </div>
       </section>
     </div>
