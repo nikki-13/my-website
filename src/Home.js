@@ -1,11 +1,14 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function Home() {
-    return (
-      <div className="page">
-        <h1>Hello</h1>
-        <p>Welcome to my portfolio</p>
-        <p>This is new Website</p>
+  return (
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-dark text-white">
+      <div className="text-center">
+        <h1>About Me</h1>
+        <p>Hello! I'm Nikil, a passionate student who's pursuing AIML in Griet.</p>
       </div>
-    );
-  }
-  
-  export default Home;
+    </div>
+  );
+}
+
+export default Home;
