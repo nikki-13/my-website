@@ -1,4 +1,3 @@
-// app.js (ES Module Version)
 import express from 'express';
 import fs from 'fs';
 import cors from 'cors';
@@ -9,46 +8,70 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
+
+// CORS Middleware (Fix for Preflight Requests)
+const allowedOrigins = [
+    'https://nikhilsai.me', 'http://nikhilsai.me',
+    'https://www.nikhilsai.me', 'http://www.nikhilsai.me',
+    'https://my-website-qa47-njccx9lm0-nikhils-projects-d0cb4601.vercel.app',
+    'http://my-website-qa47-njccx9lm0-nikhils-projects-d0cb4601.vercel.app',
+    'http://localhost:5173'
+];
+
 app.use(cors({
-  origin: ['https://nikhilsai.me', 'https://vercel.com/nikhils-projects-d0cb4601/my-website-qa47/6tHh6FbXXJ6eyXfgfAiZGRFfBxUm'],
-  methods: ['POST', 'GET'],
-  credentials: true
+    origin: allowedOrigins,
+    methods: ['POST', 'GET', 'OPTIONS'],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    exposedHeaders: ['Access-Control-Allow-Origin'],
+    optionsSuccessStatus: 200
 }));
+
+// Explicitly handle OPTIONS requests for preflight
+app.options('*', cors());
+
+// Middleware to parse JSON requests
 app.use(express.json());
 
 // Configure nodemailer
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER || 'somanikhilsai13@gmail.com', // Replace with your email or use environment variable
-        pass: process.env.EMAIL_PASS || 'bishhbmgznglxybb' // Replace with your app password or use environment variable
+        user: process.env.EMAIL_USER,  // Use environment variable
+        pass: process.env.EMAIL_PASS   // Use environment variable
     }
 });
 
-// Add a simple health check endpoint
+// Health Check Endpoint
 app.get('/', (req, res) => {
     res.status(200).send('Server is running');
 });
 
+// Contact Form Endpoint
 app.post('/save-contact', async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(200); // Preflight request response
+    }
+
     const { name, email, message } = req.body;
     const contactData = `Name: ${name}, Email: ${email}, Message: ${message}\n`;
 
     try {
-        // Save to file (optional for production environments with ephemeral filesystem)
+        // Save contact details to a file (Optional)
         if (process.env.SAVE_TO_FILE === 'true') {
             fs.appendFile('contacts.txt', contactData, (err) => {
-                if (err) {
-                    console.error('Failed to save contact to file:', err);
-                    // Continue with email sending even if file save fails
-                }
+                if (err) console.error('Failed to save contact to file:', err);
             });
         }
 
         // Send email to website owner
         const ownerMailOptions = {
-            from: process.env.EMAIL_USER || 'your-email@gmail.com',
-            to: process.env.OWNER_EMAIL || 'somanikhilsai13@gmail.com', // Replace with your email
+            from: process.env.EMAIL_USER,
+            to: process.env.OWNER_EMAIL, 
             subject: 'New Contact Form Submission',
             html: `
                 <h2>New Contact Form Submission</h2>
@@ -58,9 +81,9 @@ app.post('/save-contact', async (req, res) => {
             `
         };
 
-        // Send email to the person who submitted the form
+        // Send confirmation email to user
         const userMailOptions = {
-            from: process.env.EMAIL_USER || 'your-email@gmail.com',
+            from: process.env.EMAIL_USER,
             to: email,
             subject: 'Thank you for contacting us',
             html: `
@@ -69,7 +92,7 @@ app.post('/save-contact', async (req, res) => {
                 <p>We have received your message and will respond soon.</p>
                 <p>Here's a copy of your message:</p>
                 <p>${message}</p>
-                <p>Best regards,<br>Your Name</p>
+                <p>Best regards,<br>Your Website Team</p>
             `
         };
 
@@ -84,6 +107,7 @@ app.post('/save-contact', async (req, res) => {
     }
 });
 
+// Start Server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
