@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import NavBar from './components/navbar'; // Import global NavBar
-import "./app.css"; // Import Tailwind and global styles
+import "./App.css"; // Import Tailwind and global styles
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
