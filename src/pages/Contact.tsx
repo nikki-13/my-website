@@ -4,6 +4,7 @@ import axios from 'axios';
 const Contact: React.FC = () => {
     const [form, setForm] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState<string | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -11,14 +12,20 @@ const Contact: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        
+        // Set loading state
+        setIsSubmitting(true);
+        setStatus('Sending your message...');
 
         try {
-            const response = await axios.post('http://localhost:5000/save-contact', form);
+            const response = await axios.post('http://localhost:5001/save-contact', form);
             setStatus(response.data.message);
             setForm({ name: '', email: '', message: '' });
         } catch (error) {
             console.error('Error submitting form:', error);
             setStatus('Failed to send the message. Please try again.');
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -77,9 +84,10 @@ const Contact: React.FC = () => {
 
                     <button 
                         type="submit" 
-                        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded transition-all duration-200"
+                        disabled={isSubmitting}
+                        className={`w-full ${isSubmitting ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'} text-white font-medium py-2 rounded transition-all duration-200`}
                     >
-                        Submit
+                        {isSubmitting ? 'Sending...' : 'Submit'}
                     </button>
                 </form>
             </div>

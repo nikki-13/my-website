@@ -1,0 +1,4 @@
+Name: Nikhil, Email: somanikhilsai1311@gmail.com, Message: Hello
+Name: Test User, Email: test@example.com, Message: This is a test message to verify the contact form email functionality.
+Name: abc, Email: varshu.bvrm@gmail.com, Message: abcd
+
