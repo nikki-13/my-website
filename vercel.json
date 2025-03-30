@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/app.js"
+    }
+  ],
+  "env": {
+    "EMAIL_USER": "somanikhilsai13@gmail.com",
+    "EMAIL_PASS": "bishhbmgznglxybb",
+    "OWNER_EMAIL": "somanikhilsai13@gmail.com"
+  }
+}

@@ -9,7 +9,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['https://nikhilsai.me', 'http://localhost:5173'],
+  methods: ['POST', 'GET'],
+  credentials: true
+}));
 app.use(express.json());
 
 // Configure nodemailer
@@ -21,18 +25,25 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+// Add a simple health check endpoint
+app.get('/', (req, res) => {
+    res.status(200).send('Server is running');
+});
+
 app.post('/save-contact', async (req, res) => {
     const { name, email, message } = req.body;
     const contactData = `Name: ${name}, Email: ${email}, Message: ${message}\n`;
 
     try {
-        // Save to file (keeping this functionality)
-        fs.appendFile('contacts.txt', contactData, (err) => {
-            if (err) {
-                console.error('Failed to save contact to file:', err);
-                // Continue with email sending even if file save fails
-            }
-        });
+        // Save to file (optional for production environments with ephemeral filesystem)
+        if (process.env.SAVE_TO_FILE === 'true') {
+            fs.appendFile('contacts.txt', contactData, (err) => {
+                if (err) {
+                    console.error('Failed to save contact to file:', err);
+                    // Continue with email sending even if file save fails
+                }
+            });
+        }
 
         // Send email to website owner
         const ownerMailOptions = {
@@ -73,7 +84,7 @@ app.post('/save-contact', async (req, res) => {
     }
 });
 
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
