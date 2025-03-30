@@ -10,7 +10,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: ['https://nikhilsai.me', 'http://localhost:5173'],
+  origin: ['https://nikhilsai.me', 'https://vercel.com/nikhils-projects-d0cb4601/my-website-qa47/6tHh6FbXXJ6eyXfgfAiZGRFfBxUm'],
   methods: ['POST', 'GET'],
   credentials: true
 }));
@@ -20,8 +20,8 @@ app.use(express.json());
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER || 'your-email@gmail.com', // Replace with your email or use environment variable
-        pass: process.env.EMAIL_PASS || 'your-app-password' // Replace with your app password or use environment variable
+        user: process.env.EMAIL_USER || 'somanikhilsai13@gmail.com', // Replace with your email or use environment variable
+        pass: process.env.EMAIL_PASS || 'bishhbmgznglxybb' // Replace with your app password or use environment variable
     }
 });
 
@@ -48,7 +48,7 @@ app.post('/save-contact', async (req, res) => {
         // Send email to website owner
         const ownerMailOptions = {
             from: process.env.EMAIL_USER || 'your-email@gmail.com',
-            to: process.env.OWNER_EMAIL || 'your-email@gmail.com', // Replace with your email
+            to: process.env.OWNER_EMAIL || 'somanikhilsai13@gmail.com', // Replace with your email
             subject: 'New Contact Form Submission',
             html: `
                 <h2>New Contact Form Submission</h2>
