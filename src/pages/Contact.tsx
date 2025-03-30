@@ -18,7 +18,8 @@ const Contact: React.FC = () => {
         setStatus('Sending your message...');
 
         try {
-            const response = await axios.post('http://localhost:5001/save-contact', form);
+            // Replace this URL with your deployed backend server URL
+            const response = await axios.post('https://your-backend-server.onrender.com/save-contact', form);
             setStatus(response.data.message);
             setForm({ name: '', email: '', message: '' });
         } catch (error) {
