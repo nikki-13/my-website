@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "api/contact.js"]
+  "include": ["src", "src/pages/api/contact.js"]
 }
