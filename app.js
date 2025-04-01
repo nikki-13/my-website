@@ -15,6 +15,8 @@ const allowedOrigins = [
     'https://www.nikhilsai.me', 'http://www.nikhilsai.me',
     'https://my-website-qa47-njccx9lm0-nikhils-projects-d0cb4601.vercel.app',
     'http://my-website-qa47-njccx9lm0-nikhils-projects-d0cb4601.vercel.app',
+    'https://my-website-qa47-pjsip2pe4-nikhils-projects-d0cb4601.vercel.app',
+    'http://my-website-qa47-pjsip2pe4-nikhils-projects-d0cb4601.vercel.app',
     'http://localhost:5173'
 ];
 
