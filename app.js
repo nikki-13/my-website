@@ -81,24 +81,8 @@ app.post('/save-contact', async (req, res) => {
             `
         };
 
-        // Send confirmation email to user
-        const userMailOptions = {
-            from: process.env.EMAIL_USER,
-            to: email,
-            subject: 'Thank you for contacting us',
-            html: `
-                <h2>Thank you for contacting us!</h2>
-                <p>Dear ${name},</p>
-                <p>We have received your message and will respond soon.</p>
-                <p>Here's a copy of your message:</p>
-                <p>${message}</p>
-                <p>Best regards,<br>Your Website Team</p>
-            `
-        };
-
-        // Send both emails
+        // Send email to website owner only
         await transporter.sendMail(ownerMailOptions);
-        await transporter.sendMail(userMailOptions);
 
         res.status(200).json({ message: 'Your message has been sent successfully!' });
     } catch (error) {

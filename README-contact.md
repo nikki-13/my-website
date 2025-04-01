@@ -56,17 +56,14 @@ The backend server runs on http://localhost:5000 and the frontend development se
 When a user submits the contact form:
 
 1. The form data is sent to the server at the `/save-contact` endpoint
-2. The server saves the contact information to a `contacts.txt` file
-3. The server sends two emails:
-   - An email to you (the website owner) with the contact details
-   - A confirmation email to the person who submitted the form
+2. The server saves the contact information to a `contacts.txt` file (if SAVE_TO_FILE is set to 'true')
+3. The server sends an email to you (the website owner) with the contact details
 
 ## Customization
 
-You can customize the email templates by editing the HTML in the `app.js` file:
+You can customize the email template by editing the HTML in the `app.js` file:
 
-- `ownerMailOptions` - The email sent to you
-- `userMailOptions` - The confirmation email sent to the form submitter
+- `ownerMailOptions` - The email sent to you with contact form details
 
 ## Troubleshooting
 
