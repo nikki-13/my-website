@@ -9,7 +9,7 @@
         "src": "/(.*)",
         "dest": "/app.js",
         "headers": {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "https://nikhilsai.me",
         "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, Authorization"
       }
@@ -21,4 +21,3 @@
       "OWNER_EMAIL": "somanikhilsai13@gmail.com"
     }
   }
-  

@@ -11,14 +11,7 @@ const app = express();
 
 // CORS Middleware (Fix for Preflight Requests)
 const allowedOrigins = [
-    'https://nikhilsai.me', 'http://nikhilsai.me',
-    'https://www.nikhilsai.me', 'http://www.nikhilsai.me',
-    'https://my-website-qa47-njccx9lm0-nikhils-projects-d0cb4601.vercel.app',
-    'http://my-website-qa47-njccx9lm0-nikhils-projects-d0cb4601.vercel.app',
-    'https://my-website-qa47-pjsip2pe4-nikhils-projects-d0cb4601.vercel.app',
-    'http://my-website-qa47-pjsip2pe4-nikhils-projects-d0cb4601.vercel.app',
-    'http://localhost:5173'
-];
+    'https://nikhilsai.me', 'http://localhost:5173'];
 
 app.use(cors({
     origin: allowedOrigins,
@@ -51,7 +44,11 @@ app.get('/', (req, res) => {
 
 // Contact Form Endpoint
 app.post('/save-contact', async (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
+    // Set CORS headers specifically for nikhilsai.me
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header("Access-Control-Allow-Origin", origin);
+    }
     res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
