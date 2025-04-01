@@ -11,7 +11,7 @@ const app = express();
 
 // CORS Middleware (Fix for Preflight Requests)
 const allowedOrigins = [
-    'https://nikhilsai.me', 'http://localhost:5173'];
+    'https://nikhilsai.me', 'http://localhost:5001',"http://localhost:5173/"];
 
 app.use(cors({
     origin: allowedOrigins,
