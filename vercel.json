@@ -1,23 +1,11 @@
 {
-    "version": 2,
-    "build": {
-      "src": "app.js",
-      "use": "@vercel/node"
-    },
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/app.js",
-        "headers": {
-        "Access-Control-Allow-Origin": "https://nikhilsai.me",
-        "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
-      }
-      }
-    ],
-    "env": {
-      "EMAIL_USER": "somanikhilsai13@gmail.com",
-      "EMAIL_PASS": "bishhbmgznglxybb",
-      "OWNER_EMAIL": "somanikhilsai13@gmail.com"
-    }
-  }
+  "version": 2,
+  "builds": [
+    { "src": "api/*.js", "use": "@vercel/node" },
+    { "src": "package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}

@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// Get the API URL from environment variables
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
-
 const Contact: React.FC = () => {
     const [form, setForm] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState<string | null>(null);
@@ -21,8 +18,8 @@ const Contact: React.FC = () => {
         setStatus('Sending your message...');
 
         try {
-            // Use the API URL from environment variables
-            const response = await axios.post(`${API_URL}/save-contact`, form);
+            // Use the Vercel API route
+            const response = await axios.post('/api/send-email', form);
             setStatus(response.data.message);
             setForm({ name: '', email: '', message: '' });
         } catch (error) {
