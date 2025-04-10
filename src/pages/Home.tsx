@@ -1,4 +1,3 @@
-
 // src/components/Home.tsx
 import { motion } from "framer-motion";
 

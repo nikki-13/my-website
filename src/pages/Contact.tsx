@@ -1,6 +1,8 @@
-    import React, { useState } from 'react';
+import React, { useState } from 'react';
 
     const Contact: React.FC = () => {
+        // Your email address for contact form submissions
+        const emailAddress = "somanikhilsai13@gmail.com";
         const [form, setForm] = useState({ name: '', email: '', message: '' });
         const [status, setStatus] = useState<string | null>(null);
         const [isSubmitting, setIsSubmitting] = useState(false);
@@ -9,16 +11,24 @@
             setForm({ ...form, [e.target.name]: e.target.value });
         };
 
-        const handleSubmit = async (e: React.FormEvent) => {
+        const handleSubmit = (e: React.FormEvent) => {
             e.preventDefault();
             
             // Set loading state
             setIsSubmitting(true);
-            setStatus('Sending your message...');
+            setStatus('Opening email client...');
 
-            // Simulate form submission (API endpoint removed)
+            // Create mailto URL with form data
+            const subject = `Website Contact from ${form.name}`;
+            const body = `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`;
+            const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Open default mail client
+            window.location.href = mailtoUrl;
+            
+            // Reset form after a delay
             setTimeout(() => {
-                setStatus('Your message has been received. Thank you!');
+                setStatus('Email client opened. Thank you!');
                 setForm({ name: '', email: '', message: '' });
                 setIsSubmitting(false);
             }, 1000);
