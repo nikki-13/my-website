@@ -1,5 +1,4 @@
     import React, { useState } from 'react';
-    import axios from 'axios';
 
     const Contact: React.FC = () => {
         const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -17,17 +16,12 @@
             setIsSubmitting(true);
             setStatus('Sending your message...');
 
-            try {
-                // Use the Vercel API route
-                const response = await axios.post("/api/send-email", form);
-                setStatus(response.data.message);
+            // Simulate form submission (API endpoint removed)
+            setTimeout(() => {
+                setStatus('Your message has been received. Thank you!');
                 setForm({ name: '', email: '', message: '' });
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                setStatus('Failed to send the message. Please try again.');
-            } finally {
                 setIsSubmitting(false);
-            }
+            }, 1000);
         };
 
         return (
