@@ -44,7 +44,7 @@ const Contact: React.FC = () => {
                     transition={{ duration: 0.8 }}
                 >
                     <h2 className="text-4xl font-bold mb-12 text-white">
-                        Contact
+                        Contact Me
                     </h2>
 
                     {status && (

@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
               onClick={() => scrollToSection("contact")}
               className={`hover:text-purple-400 transition-colors ${activeSection === "contact" ? "text-purple-400" : ""}`}
             >
-              Contact
+              Contact Me
             </button>
           </div>
 

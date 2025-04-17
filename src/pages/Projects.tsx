@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 const projects = [
   {
     title: "Pneumonia Detection using Chest X-rays",
-    emoji: "🏆",
+    emoji: "",
     description: "Building an advanced deep learning model for pneumonia detection using Swin Transformer. Utilizing a Kaggle Chest X-ray Dataset and optimizing for a 30GB GPU RAM environment. Experimenting with data augmentation, hyperparameter tuning, and transfer learning for improved accuracy.",
     tags: ["Deep Learning", "Vision Transformers", "PyTorch"]
   },
   {
     title: "Scalable Hybrid Chatbot",
-    emoji: "🤖",
+    emoji: "",
     description: "Developed a chatbot that generates FAQ-based responses by retrieving relevant information from a vector database. Built on RAG architecture (Retrieval Augmented Generation). Used Streamlit, a Python framework, to develop the interactive chatbot's front end.",
     tags: ["LangChain", "Docker", "Streamlit", "Vector Databases", "Python"]
   }
