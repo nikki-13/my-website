@@ -5,13 +5,19 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background-color: #0a0a1a;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e1e1e;
+  background: #0a0a1a;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -19,8 +25,80 @@ html {
   border-radius: 6px;
 }
 
+/* Section Styling */
+.section {
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Background with subtle pattern */
+.bg-pattern {
+  background-color: #0a0a1a;
+  background-image: radial-gradient(rgba(120, 100, 220, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Purple accent color */
+.text-accent {
+  color: #a78bfa;
+}
+
 /* Light Hover Effect */
 .card-hover:hover {
   transform: scale(1.03);
   transition: transform 0.3s ease-in-out;
+}
+
+/* Project cards */
+.project-card {
+  background-color: #111133;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(120, 100, 220, 0.2);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: rgba(120, 100, 220, 0.5);
+  box-shadow: 0 0 15px rgba(120, 100, 220, 0.3);
+}
+
+/* Tag styling */
+.tag {
+  background-color: rgba(120, 100, 220, 0.2);
+  color: #a78bfa;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Timeline styling */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #a78bfa, rgba(120, 100, 220, 0.2));
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -0.5rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: #a78bfa;
+  border: 2px solid #0a0a1a;
 }

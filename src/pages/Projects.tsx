@@ -1,11 +1,11 @@
-// src/components/Projects.tsx
 import { motion } from "framer-motion";
 
+// Project data
 const projects = [
   {
     title: "Pneumonia Detection using Chest X-rays",
     emoji: "🏆",
-    description: "Building an advanced deep learning model for pneumonia detection using Swin Transformer. Utilizing a Kaggle Chest X-ray Dataset and optimizing for a 30GB GPU RAM environment. Experimenting with data augmentation, hyperparameter tuning, and transfer learning for improved accuracy. Building a Website Using React Vite(Frontend) and Node.Js(Backend).",
+    description: "Building an advanced deep learning model for pneumonia detection using Swin Transformer. Utilizing a Kaggle Chest X-ray Dataset and optimizing for a 30GB GPU RAM environment. Experimenting with data augmentation, hyperparameter tuning, and transfer learning for improved accuracy.",
     tags: ["Deep Learning", "Vision Transformers", "PyTorch"]
   },
   {
@@ -18,43 +18,42 @@ const projects = [
 
 const Projects: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-gray-900 to-gray-800 text-white px-6 py-12">
-      <motion.h2
-        className="text-4xl font-extrabold text-teal-400 mb-8"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-      >
-        My Projects
-      </motion.h2>
+    <div className="min-h-screen bg-pattern text-white px-6 py-20">
+      <div className="container mx-auto max-w-5xl">
+        {/* Projects Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl font-bold mb-12 text-white">
+            Projects
+          </h2>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            className="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-          >
-            <h3 className="text-2xl font-semibold text-teal-300 mb-2">
-              {project.emoji} {project.title}
-            </h3>
-            <p className="text-gray-400 mb-3">{project.description}</p>
-            {project.tags && (
-              <div className="flex flex-wrap gap-2 mt-2">
-                {project.tags.map((tag, tagIndex) => (
-                  <span 
-                    key={tagIndex} 
-                    className="bg-teal-900 text-teal-200 text-xs px-2 py-1 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </motion.div>
-        ))}
+          <div className="grid md:grid-cols-2 gap-6">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                className="project-card p-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <h3 className="text-2xl font-semibold text-white mb-3">
+                  {project.emoji} {project.title}
+                </h3>
+                <p className="text-gray-400 mb-4">{project.description}</p>
+                <div className="flex flex-wrap">
+                  {project.tags.map((tag, tagIndex) => (
+                    <span key={tagIndex} className="tag">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </div>
   );
