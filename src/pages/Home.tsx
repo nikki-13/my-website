@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const Home: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-pattern text-white px-6 pt-16">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-pattern text-white px-6 py-20">
       <motion.div
         className="text-center max-w-2xl"
         initial={{ opacity: 0, y: -30 }}
@@ -14,7 +14,9 @@ const Home: React.FC = () => {
           Hi, I'm <span className="text-accent">Nikhil</span>
         </h1>
         <p className="text-xl text-gray-300 leading-relaxed mb-8">
-          I develop user interfaces for web and mobile applications.
+          I am a passionate machine learning engineer and front-end developer with a knack for creating
+          beautiful and functional web applications. I specialize in React, TypeScript, and blockchain
+          technology, and I love to explore new technologies and frameworks.
         </p>
 
         <motion.button

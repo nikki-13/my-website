@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Github, Linkedin } from "lucide-react"; // Icons for mobile menu and social links
+import { Menu, X, } from "lucide-react";
+import { FaGithub, FaLinkedin } from 'react-icons/fa'; // Icons for mobile menu and social links
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,26 +43,26 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className="bg-gray-900 bg-opacity-90 text-white shadow-md fixed top-0 left-0 right-0 z-50 backdrop-blur-sm">
+    <nav className="text-white shadow-md fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-[#0a0a1a]/90">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Social Links / Logo */}
           <div className="flex items-center space-x-4">
             <a 
-              href="https://github.com" 
+              href="https://github.com/nikki-13" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-purple-400 transition-colors"
             >
-              <Github size={24} />
+              <FaGithub className="text-2xl hover:text-gray-700 transition" />
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="http://linkedin.com/in/nikhilsai13/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-purple-400 transition-colors"
             >
-              <Linkedin size={24} />
+              <FaLinkedin className="text-2xl text-blue-600 hover:text-blue-800 transition" />
             </a>
           </div>
 

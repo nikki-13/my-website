@@ -7,7 +7,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="bg-gray-900 min-h-screen text-white">
+    <div className="bg-[#0a0a1a] min-h-screen text-white">
       <Navbar />
       <div id="content">
         <section id="home" className="section">
